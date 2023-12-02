@@ -19,9 +19,7 @@ This is a basic banking application created using React and Redux. It allows use
 - **Redux Thunks**
 - **Frankfurter API**
 
-## Installation
+## Try Here
+[Click Here for Demo]()
 
-1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/your-username/banking-app.git
