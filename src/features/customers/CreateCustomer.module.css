@@ -1,0 +1,43 @@
+.header {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(153, 153, 153);
+  padding: 2rem;
+  max-width: 325px;
+  font-family: monospace;
+  border-radius: 7px;
+}
+label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.input {
+  width: 100%;
+  padding: 0.7rem;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  color: rgb(149, 149, 149);
+  letter-spacing: 1.2px;
+  border-radius: 7px;
+}
+input:focus {
+  color: blue;
+}
+
+button {
+  padding: 0.5rem;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 11px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}

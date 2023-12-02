@@ -1,0 +1,53 @@
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 350px;
+  row-gap: 1.2rem;
+  padding: 1rem;
+  border: 2px solid rgb(0, 32, 136);
+  border-radius: 11px;
+  margin-top: 0.8rem;
+}
+h2 {
+  padding: 0;
+  margin: 0;
+  color: rgb(0, 32, 136);
+}
+.division {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.2rem;
+  row-gap: 0.3rem;
+  margin-top: 0.8rem;
+}
+.label {
+  display: block !important;
+  width: 100%;
+  text-align: center;
+  color: rgb(0, 32, 136);
+  font-weight: 700;
+}
+.division input,
+.division select {
+  padding: 0.4rem;
+  border: none;
+  color: rgb(149, 149, 149);
+  outline-color: rgb(0, 32, 136);
+  border-radius: 8px;
+}
+input:focus,
+select:focus {
+  color: blue;
+}
+.red {
+  border: 2px solid red !important;
+}
+button {
+  font-size: 1rem !important;
+}

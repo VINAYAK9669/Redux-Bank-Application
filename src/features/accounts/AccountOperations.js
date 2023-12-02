@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deposit, payLoan, requestLoan, withdraw } from "./accountSlice";
+import styles from "./AccountOperations.module.css";
+import BalanceDisplay from "./BalanceDisplay";
 
 function AccountOperations() {
   const [depositAmount, setDepositAmount] = useState("");
@@ -7,20 +11,48 @@ function AccountOperations() {
   const [loanPurpose, setLoanPurpose] = useState("");
   const [currency, setCurrency] = useState("USD");
 
-  function handleDeposit() {}
+  const dispatch = useDispatch();
+  const {
+    loan: currentLoan,
+    loanPurpose: currentLoanPurpose,
+    balance,
+    isloading,
+  } = useSelector((store) => store.account);
 
-  function handleWithdrawal() {}
+  function handleDeposit() {
+    if (!depositAmount) return;
+    dispatch(deposit(depositAmount, currency));
+    setDepositAmount("");
+    setCurrency("USD");
+  }
 
-  function handleRequestLoan() {}
+  function handleWithdrawal() {
+    if (balance < withdrawalAmount || !withdrawalAmount) return;
+    dispatch(withdraw(withdrawalAmount));
+    setWithdrawalAmount("");
+  }
 
-  function handlePayLoan() {}
+  function handleRequestLoan() {
+    if (!loanAmount || !loanPurpose) {
+      return;
+    }
+    console.log(loanAmount, loanPurpose);
+    dispatch(requestLoan(loanAmount, loanPurpose));
+    setLoanAmount("");
+    setLoanPurpose("");
+  }
+
+  function handlePayLoan() {
+    dispatch(payLoan());
+  }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Your account operations</h2>
-      <div className="inputs">
-        <div>
-          <label>Deposit</label>
+      <BalanceDisplay />
+      <div>
+        <div className={styles.division}>
+          <label className={styles.label}>Deposit</label>
           <input
             type="number"
             value={depositAmount}
@@ -34,24 +66,30 @@ function AccountOperations() {
             <option value="EUR">Euro</option>
             <option value="GBP">British Pound</option>
           </select>
-
-          <button onClick={handleDeposit}>Deposit {depositAmount}</button>
+          <button
+            onClick={handleDeposit}
+            disabled={isloading}
+            className={styles.button}
+          >
+            {isloading ? "Converting..." : `Deposit ${depositAmount}`}
+          </button>
         </div>
 
-        <div>
-          <label>Withdraw</label>
+        <div className={styles.division}>
+          <label className={styles.label}>Withdraw</label>
           <input
             type="number"
             value={withdrawalAmount}
             onChange={(e) => setWithdrawalAmount(+e.target.value)}
+            className={balance < withdrawalAmount ? styles.red : ""}
           />
           <button onClick={handleWithdrawal}>
             Withdraw {withdrawalAmount}
           </button>
         </div>
 
-        <div>
-          <label>Request loan</label>
+        <div className={styles.division}>
+          <label className={styles.label}>Request loan</label>
           <input
             type="number"
             value={loanAmount}
@@ -66,10 +104,17 @@ function AccountOperations() {
           <button onClick={handleRequestLoan}>Request loan</button>
         </div>
 
-        <div>
-          <span>Pay back $X</span>
-          <button onClick={handlePayLoan}>Pay loan</button>
-        </div>
+        {currentLoan ? (
+          <div>
+            <span>
+              Pay back ${currentLoan}
+              {`(${currentLoanPurpose})`}
+            </span>
+            <button onClick={handlePayLoan}>Pay loan</button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
