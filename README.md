@@ -22,4 +22,7 @@ This is a basic banking application created using React and Redux. It allows use
 ## Try Here
 [Click Here for Demo](https://vinayak9669.github.io/Redux-Bank-Application/)
 
+## Check out LinkedIn Post
+[Click Here to see LinkedIn post and Video Demo](https://www.linkedin.com/posts/vinay1998_react-redux-javascript-activity-7136551944264843264-bdAA?utm_source=share&utm_medium=member_desktop)
+
 
